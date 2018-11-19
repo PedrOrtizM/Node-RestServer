@@ -2,6 +2,7 @@
 const express = require('express')
 const app = express()
 const bcrypt = require('bcrypt');
+const _ = require('underscore');
 const Usuario = require('../models/usuario');
 
 
@@ -18,7 +19,7 @@ app.post('/usuario', function(req, res) {
     let usuario = new Usuario({
           nombre:   body.nombre,
           email:    body.email,
-          password: bcrypt.hashSync(body.password, 10),
+          password: bcrypt.hashSync(body.password, 10),                         // encriptar contraseña
           role:     body.role
     });
 
@@ -37,18 +38,30 @@ app.post('/usuario', function(req, res) {
                 });
     });
 
-
 });
 
 //----------------------------------------
 
 app.put('/usuario/:id', function(req, res) {
-    let id = req.params.id;
-    res.json({
-        id
-    });
 
-});
+    let body = _.pick(req.body,['nombre','email','img','role','estado'] );      // Las opciones que si se puedan actualzar
+    let id = req.params.id;
+
+    Usuario.findByIdAndUpdate( id, body, { new: true, runValidators: true},(err,usuarioDB) =>{     // { new: true} para que regrese el user modificado
+
+      if (err) {
+               return res.status(400).json({
+                 ok: false,
+                 err
+               });
+          }
+
+      res.json({
+                ok: true,
+                usuario: usuarioDB
+              });
+      })
+    });
 
 //----------------------------------------
 

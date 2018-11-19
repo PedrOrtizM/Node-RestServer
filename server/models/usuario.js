@@ -30,10 +30,9 @@ let usuarioSchema = new Schema({
             type:     String,
             required: false
            },
-
   role:    {
             type:    String,
-            defaul: 'USER_ROLE',
+            default: 'USER_ROLE',
             enum:   rolesValidos
            },
 
@@ -49,5 +48,19 @@ let usuarioSchema = new Schema({
 
 });
 
+usuarioSchema.methods.toJSON = function() {                            // Convertir la funcion toJSON para imprimir
+  let user = this;
+  let userObject = user.toObject();
+  delete userObject.password;
+  return userObject;
+}
+
 usuarioSchema.plugin(uniqueValidator, { message: '{PATH} Debe ser único'}); // Asignarle a la variable Schema el plugin que permite validar
 module.exports = mongoose.model('Usuario',usuarioSchema);  // para que el modelo se llame usuario, tiene la configuracion de usuarioSchema
+
+
+
+
+
+
+//
