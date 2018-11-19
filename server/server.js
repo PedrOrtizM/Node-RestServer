@@ -12,7 +12,7 @@ app.use ( require('./routes/usuario') );                        // Para poder us
 
 //mongoose.connect('mongodb://user:password@sample.com:port/dbname', )
 
-mongoose.connect('mongodb://localhost:27017/cafe',{ useNewUrlParser: true } , (err,res)=>{
+mongoose.connect(process.env.URLDB,{ useNewUrlParser: true } , (err,res)=>{
 
   if (err) { throw err; }
   else {   console.log('Base de datos ONLINE');   }

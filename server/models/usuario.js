@@ -48,7 +48,7 @@ let usuarioSchema = new Schema({
 
 });
 
-usuarioSchema.methods.toJSON = function() {                            // Convertir la funcion toJSON para imprimir
+usuarioSchema.methods.toJSON = function() {                            // Convertir la funcion toJSON para imprimir sin que salga el password
   let user = this;
   let userObject = user.toObject();
   delete userObject.password;
