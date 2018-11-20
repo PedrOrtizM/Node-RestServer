@@ -48,7 +48,7 @@ let usuarioSchema = new Schema({
 
 });
 
-usuarioSchema.methods.toJSON = function() {                            // Convertir la funcion toJSON para imprimir sin que salga el password
+usuarioSchema.methods.toJSON = function() {                                  // Convertir la funcion toJSON para imprimir sin que salga el password
   let user = this;
   let userObject = user.toObject();
   delete userObject.password;
@@ -56,7 +56,7 @@ usuarioSchema.methods.toJSON = function() {                            // Conver
 }
 
 usuarioSchema.plugin(uniqueValidator, { message: '{PATH} Debe ser único'}); // Asignarle a la variable Schema el plugin que permite validar
-module.exports = mongoose.model('Usuario',usuarioSchema);  // para que el modelo se llame usuario, tiene la configuracion de usuarioSchema
+module.exports = mongoose.model('Usuario',usuarioSchema);                   // para que el modelo se llame usuario, tiene la configuracion de usuarioSchema
 
 
 
