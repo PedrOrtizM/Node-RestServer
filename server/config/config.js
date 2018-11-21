@@ -1,14 +1,17 @@
 //process es un objeto global que está en toda la application
 
 
-// ========================| PUERTO |=========================
+//_________________________| PUERTO |_________________________
         process.env.PORT = process.env.PORT || 3000
+//____________________________________________________________
 
-// ========================| Entorno |========================
+
+// _______________________| Entorno |________________________
         process.env.NODE_ENV = process.env.NODE_ENV || 'dev';
+//___________________________________________________________
 
 
-// ====================| Base de Datos |======================
+// ____________________| Base de Datos |_____________________
         process.env.NODE_ENV = process.env.NODE_ENV || 'dev';
 
         let urlDB;
@@ -18,4 +21,6 @@
         else{
           urlDB = 'mongodb://cafe-user:1QAz2WSx@ds213259.mlab.com:13259/cafe';
         }
-        process.env.URLDB = urlDB;  // process.env.URLDB es inventado
+        process.env.URLDB = urlDB;      // process.env.URLDB es inventado
+
+//___________________________________________________________
