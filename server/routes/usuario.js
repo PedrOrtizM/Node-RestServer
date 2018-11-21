@@ -4,9 +4,10 @@ const app = express()
 const bcrypt = require('bcrypt');
 const _ = require('underscore');
 const Usuario = require('../models/usuario');
+const {verificaToken} = require('../middlewares/autenticacion.js');
                                                                                 // res.json('sdsad') envía en formato JSON |
                                                                                 // res.send(); Envia en fomrato HTML
-app.get('/usuario', function(req, res) {
+app.get('/usuario', verificaToken ,(req, res) => {
 
   let desde = req.query.desde || 0;                                             // query tiene los parametros que se mandan
   desde = Number(desde);
@@ -15,7 +16,7 @@ app.get('/usuario', function(req, res) {
   limite = Number(limite);
 
 
-  Usuario.find({ estado: true})                                                             // Otro argumento {},'nombre email' para mostrar solo los atributos que quiero
+  Usuario.find({ estado: true})                                                 // Otro argumento {},'nombre email' para mostrar solo los atributos que quiero
          .skip(desde)                                                          // desde que número de registro
          .limit(limite)                                                        // Limita la cantidad de resutados
          .exec((err,usuarios)=>{                                               // Ejecuta el comando find de mongoose

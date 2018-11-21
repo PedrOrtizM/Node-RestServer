@@ -35,22 +35,18 @@ app.post('/login',(req,res) =>{
                           });
         }
 
-        // let token = jwt.sign({
-        //
-        // })
+         let token = jwt.sign({usuario: usuarioDB},process.env.SEMILLA,
+                              {expiresIn: process.env.VENCIMIENTO_TOKEN});
 
         res.json({
           ok: true,
           usuario: usuarioDB,
-          token: '123'
+          token: token
         });
 
     });
 
 });
-
-
-
 
 
 module.exports = app;
