@@ -1,0 +1,4 @@
+Para las variables de entorno en HEROKU
+
+heroku config
+heroku config:set VARIABLE=VALUE

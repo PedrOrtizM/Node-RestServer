@@ -8,8 +8,13 @@ const {verificaToken} = require('../middlewares/autenticacion.js');
                                                                                 // res.json('sdsad') envía en formato JSON |
                                                                                 // res.send(); Envia en fomrato HTML
 app.get('/usuario', verificaToken ,(req, res) => {
+  return res.json({
+    usuario: req.usuario,
+    nombre: req.usuario.nombre,
+    email: req.usuario.email
 
-  let desde = req.query.desde || 0;                                             // query tiene los parametros que se mandan
+  })
+  let desde = req.query.desde || 0;                                             // query tiene los parametros que se mandan desde URL
   desde = Number(desde);
 
   let limite = req.query.limite || 5;

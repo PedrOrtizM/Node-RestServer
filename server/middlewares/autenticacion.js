@@ -15,10 +15,12 @@ const jwt = require('jsonwebtoken');
                 err
               });
             }
-            
-            req.usuario = decoded.usuario;
 
+            req.usuario = decoded.usuario;                                      // decode es el payload
+
+            //console.log("token: ",token);
             next();
+
 
         });
 
