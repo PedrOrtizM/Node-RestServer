@@ -1,5 +1,5 @@
-const jwt = require('jsonwebtoken');
 
+const jwt = require('jsonwebtoken');
 
 //______________________________| verifica token |______________________________
 
@@ -12,7 +12,9 @@ const jwt = require('jsonwebtoken');
             if( err ){
             return  res.status(401).json({
                 ok : false,
-                err
+                err:{
+                    message: "Token no válido"
+                }
               });
             }
 
@@ -20,17 +22,29 @@ const jwt = require('jsonwebtoken');
 
             //console.log("token: ",token);
             next();
-
-
         });
-
-
   };
 
+//____________________________| verifica adminRole |____________________________
+
+  let verificaAdminRole = (req,res,next) => {
+
+    let usuario = req.usuario;
+
+    if (usuario.role != 'ADMIN_ROLE'){
+      return res.json({
+        ok : false,
+        err:{
+          message: "El usuario debe ser administrador"
+        }
+      });
+    }
+    next();
+
+  }
+
 //______________________________________________________________________________
-
-
-
 module.exports = {
-  verificaToken
+  verificaToken,
+  verificaAdminRole
 }

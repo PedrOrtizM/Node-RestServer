@@ -5,15 +5,16 @@ const bcrypt = require('bcrypt');
 const _ = require('underscore');
 const Usuario = require('../models/usuario');
 const {verificaToken} = require('../middlewares/autenticacion.js');
+const {verificaAdminRole} = require('../middlewares/autenticacion.js');
+
                                                                                 // res.json('sdsad') envía en formato JSON |
                                                                                 // res.send(); Envia en fomrato HTML
 app.get('/usuario', verificaToken ,(req, res) => {
-  return res.json({
-    usuario: req.usuario,
-    nombre: req.usuario.nombre,
-    email: req.usuario.email
 
-  })
+  // el req ahora es el que se envía desde verificaToken en middleware
+  // la res ahora se va a enviar para el ger
+
+
   let desde = req.query.desde || 0;                                             // query tiene los parametros que se mandan desde URL
   desde = Number(desde);
 
@@ -45,7 +46,7 @@ app.get('/usuario', verificaToken ,(req, res) => {
 });
 
 
-app.post('/usuario', function(req, res) {
+app.post('/usuario',[verificaToken, verificaAdminRole], function(req, res) {
 
     let body = req.body;
 
@@ -74,7 +75,7 @@ app.post('/usuario', function(req, res) {
 });
 
 
-app.put('/usuario/:id', function(req, res) {
+app.put('/usuario/:id', [verificaToken, verificaAdminRole], function(req, res) {
 
     let body = _.pick(req.body,['nombre','email','img','role','estado'] );      // Las opciones que si se puedan actualzar
     let id   = req.params.id;
@@ -96,7 +97,7 @@ app.put('/usuario/:id', function(req, res) {
     });
 
 
-app.delete('/usuario/:id', function(req, res) {
+app.delete('/usuario/:id',[verificaToken, verificaAdminRole], function(req, res) {
 
       let id = req.params.id;                                                   // el que se pasa por url
 

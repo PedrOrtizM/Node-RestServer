@@ -35,7 +35,9 @@ app.post('/login',(req,res) =>{
                           });
         }
 
-         let token = jwt.sign({usuario: usuarioDB},process.env.SEMILLA,
+
+         let token = jwt.sign({usuario: usuarioDB},
+                              process.env.SEMILLA,
                               {expiresIn: process.env.VENCIMIENTO_TOKEN});
 
         res.json({
