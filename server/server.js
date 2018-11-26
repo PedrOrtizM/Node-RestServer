@@ -10,6 +10,7 @@ app.use(bodyParser.urlencoded({ extended: false }))             // USE -> Middle
 app.use(bodyParser.json())                                      // parse application/json
 app.use ( require('./routes/index') );                          // Para poder usar las rutas de usuario, login etc (import)
 
+
 mongoose.connect(process.env.URLDB,{ useNewUrlParser: true } , (err,res)=>{
 
   if (err) { throw err; }
