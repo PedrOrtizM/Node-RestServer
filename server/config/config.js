@@ -27,7 +27,7 @@
 
 
 // ______________________________| Base de Datos |______________________________
-            process.env.NODE_ENV = process.env.NODE_ENV || 'dev';
+          process.env.NODE_ENV = process.env.NODE_ENV || 'dev';
 
           let urlDB;
           if( process.env.NODE_ENV === 'dev' ){
@@ -39,3 +39,9 @@
           process.env.URLDB = urlDB;      // process.env.URLDB es inventado
 
 //______________________________________________________________________________
+
+
+
+// ___________________________|  Google CLIENT_ID |_______________________________
+
+        process.env.CLIENT_ID = process.env.CLIENT_ID || '746251866300-6nsn0lqc629sq0b2smvb11b0l2g0r311.apps.googleusercontent.com';

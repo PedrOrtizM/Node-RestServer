@@ -21,13 +21,13 @@
 
               var id_token = googleUser.getAuthResponse().id_token;
 
-              var xhr = new XMLHttpRequest();
-              xhr.open('POST', 'https://localhost:3000/logink/google');
+              var xhr = new XMLHttpRequest();                                   // codigo para mandar peticiones por ajax
+              xhr.open('POST', '/google');
               xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
               xhr.onload = function() {
                 console.log('Signed in as: ' + xhr.responseText);
               };
-          xhr.send('idtoken=' + id_token);
+          xhr.send('idtoken=' + id_token);                            // lo que se está enviando a la url
         }
     </script>
 
