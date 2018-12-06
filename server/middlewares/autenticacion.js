@@ -1,5 +1,6 @@
-
+﻿
 const jwt = require('jsonwebtoken');
+
 
 //______________________________| verifica token |______________________________
 
@@ -43,7 +44,9 @@ const jwt = require('jsonwebtoken');
 
   }
 
+
 //______________________________________________________________________________
+
 module.exports = {
   verificaToken,
   verificaAdminRole
