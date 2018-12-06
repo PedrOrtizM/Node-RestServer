@@ -1,30 +1,22 @@
-//process es un objeto global que está en toda la application
+﻿//process es un objeto global que está en toda la application
 
 
 //__________________________________| PUERTO |__________________________________
             process.env.PORT = process.env.PORT || 3000;
 //______________________________________________________________________________
 
-
-
 // _________________________________| Entorno |_________________________________
             process.env.NODE_ENV = process.env.NODE_ENV || 'dev';
 //______________________________________________________________________________
-
-
 
 // __________________________| Vencimiento del token |__________________________
 //          60 Segundos - 60 Minutos - 24 Horas - 30 Dias
             process.env.VENCIMIENTO_TOKEN =  60 * 60 * 24 *30;
 //______________________________________________________________________________
 
-
-
 // _________________________|Semilla de autenticación|__________________________
             process.env.SEMILLA =  process.env.SEMILLA || 'seed-en-desarrollo';
 //______________________________________________________________________________
-
-
 
 // ______________________________| Base de Datos |______________________________
           process.env.NODE_ENV = process.env.NODE_ENV || 'dev';
